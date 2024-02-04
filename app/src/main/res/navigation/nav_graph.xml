@@ -23,4 +23,11 @@
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
 
+    <fragment
+        android:id="@+id/editBoxFragment"
+        android:name="com.ren.mvvmandroid15.ui.views.fragments.EditBoxFragment"
+        android:label="fragment_edit_box"
+        tools:layout="@layout/fragment_edit_box" />
+
+
 </navigation>

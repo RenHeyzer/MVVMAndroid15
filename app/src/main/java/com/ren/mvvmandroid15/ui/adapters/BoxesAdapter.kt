@@ -4,12 +4,15 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.ren.mvvmandroid15.data.models.Box
 import com.ren.mvvmandroid15.databinding.ItemBoxBinding
 
-class BoxesAdapter(private val onItemClick: (box: Box) -> Unit) :
-    RecyclerView.Adapter<BoxesAdapter.BoxViewHolder>() {
+class BoxesAdapter(
+    private val onItemClick: (box: Box) -> Unit,
+    private val onItemEditClick: (index: Int, box: Box) -> Unit
+) : RecyclerView.Adapter<BoxesAdapter.BoxViewHolder>() {
 
     private var boxes = emptyList<Box>()
 
@@ -22,14 +25,35 @@ class BoxesAdapter(private val onItemClick: (box: Box) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
+            binding.tvItemEdit.setTextColor(
+                ColorStateList(
+                    arrayOf(
+                        intArrayOf(android.R.attr.state_pressed),
+                        intArrayOf(-android.R.attr.state_pressed),
+                    ),
+                    intArrayOf(
+                        Color.YELLOW,
+                        Color.BLACK
+                    )
+                )
+            )
+
             binding.root.setOnClickListener {
                 onItemClick(boxes[adapterPosition])
+            }
+
+            binding.tvItemEdit.setOnClickListener {
+                onItemEditClick(adapterPosition, boxes[adapterPosition])
             }
         }
 
         fun onBind(box: Box) = with(binding) {
-            root.setCardBackgroundColor(ColorStateList.valueOf(Color.parseColor(box.color)))
-            itemText.text = box.text
+            try {
+                root.setCardBackgroundColor(ColorStateList.valueOf(Color.parseColor(box.color)))
+            } catch (e: Exception) {
+                Toast.makeText(root.context, "Такого цвета не существует", Toast.LENGTH_SHORT).show()
+            }
+            tvItemText.text = box.text
         }
     }
 

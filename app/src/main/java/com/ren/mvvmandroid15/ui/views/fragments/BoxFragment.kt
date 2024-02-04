@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.ren.mvvmandroid15.R
 import com.ren.mvvmandroid15.data.models.Box
 import com.ren.mvvmandroid15.databinding.FragmentBoxBinding
 import com.ren.mvvmandroid15.ui.adapters.BoxesAdapter
@@ -18,8 +21,8 @@ class BoxFragment : Fragment() {
 
     private var _binding: FragmentBoxBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by viewModels<BoxViewModel>()
-    private val boxesAdapter = BoxesAdapter(::onItemClick)
+    private val viewModel by activityViewModels<BoxViewModel>()
+    private val boxesAdapter = BoxesAdapter(::onItemClick, ::onItemEditClick)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +31,11 @@ class BoxFragment : Fragment() {
 
     private fun onItemClick(box: Box) {
         Log.i("onItemClick", "click")
+    }
+
+    private fun onItemEditClick(index: Int, box: Box) {
+        viewModel.passBoxToEdit(index, box)
+        findNavController().navigate(R.id.editBoxFragment)
     }
 
     override fun onCreateView(

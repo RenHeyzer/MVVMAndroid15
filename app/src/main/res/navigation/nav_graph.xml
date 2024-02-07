@@ -3,31 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/boxFragment">
+    app:startDestination="@id/registrationFragment">
 
     <fragment
-        android:id="@+id/boxFragment"
-        android:name="com.ren.mvvmandroid15.ui.views.fragments.BoxFragment"
-        android:label="fragment_box"
-        tools:layout="@layout/fragment_box">
-        <action
-            android:id="@+id/action_boxFragment_to_detailFragment"
-            app:destination="@id/detailFragment"
-            app:popUpTo="@id/nav_graph.xml"
-            app:popUpToInclusive="true" />
-    </fragment>
+        android:id="@+id/registrationFragment"
+        android:name="com.ren.mvvmandroid15.ui.views.fragments.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" />
 
     <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.ren.mvvmandroid15.ui.views.fragments.DetailFragment"
-        android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        android:id="@+id/userInfoFragment"
+        android:name="com.ren.mvvmandroid15.ui.views.fragments.UserInfoFragment"
+        android:label="fragment_user_info"
+        tools:layout="@layout/fragment_user_info" />
 
     <fragment
-        android:id="@+id/editBoxFragment"
-        android:name="com.ren.mvvmandroid15.ui.views.fragments.EditBoxFragment"
-        android:label="fragment_edit_box"
-        tools:layout="@layout/fragment_edit_box" />
-
+        android:id="@+id/editUserInfoFragment"
+        android:name="com.ren.mvvmandroid15.ui.views.fragments.EditUserInfoFragment"
+        android:label="fragment_edit_user_info"
+        tools:layout="@layout/fragment_edit_user_info" />
 
 </navigation>

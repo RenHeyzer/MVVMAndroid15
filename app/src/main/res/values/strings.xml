@@ -5,4 +5,10 @@
     <string name="shared_preferences_name">preferences_name</string>
     <string name="save">Save</string>
     <string name="edit">Edit</string>
+    <string name="username">Username</string>
+    <string name="age">Age</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="show">Show</string>
+    <string name="go">Go</string>
 </resources>
